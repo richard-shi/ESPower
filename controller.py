@@ -1,17 +1,18 @@
-
-# TODO: Implement the GPIO reading
+import machine
 
 class Controller:
 
     def __init__(self, power=False):
         print("Controller startup")
-        self.power = power
+
+        # By default off
+        self.pin = machine.Pin(2, machine.Pin.OUT)
 
     def status(self):
-        return self.power
+        return self.pin.value()
 
     def change(self, new_status):
-        self.power = new_status
-        return self.power
+        self.pin.value(new_status)
+
 
 
